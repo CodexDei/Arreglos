@@ -1,5 +1,6 @@
 package arreglos;
 
+
 public class Persona {
 
     private String nombre;
