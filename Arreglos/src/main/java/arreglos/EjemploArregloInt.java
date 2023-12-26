@@ -9,7 +9,7 @@ public class EjemploArregloInt {
     //1. Declaramos una variable de tipo arreglo, tipo int
     static int edades[];
     static boolean estado = false;
-    static boolean salir = false;
+    static boolean estadoRellenarArray = false;
     static int tamañoArray;
 
     public static void main(String[] args) {
@@ -21,40 +21,21 @@ public class EjemploArregloInt {
             try {
 
                 do {
-                    System.out.print("Ingrese el tamaño del array:");
-                    tamañoArray = sc.nextInt();
-
-                    if (tamañoArray == 0) {
-
-                        System.out.println("Ingrese un valor mayor a cero");
-
-                    } else {
-                        salir = true;
-                    }
-                } while (!salir);
-                //2. instanciamos el arreglo int
-                edades = new int[tamañoArray];
-
-                for (int i = 0; i < edades.length; i++) {
-                    System.out.print("Ingrese el valor para la posicion " + i + ":");
-                    edades[i] = sc.nextInt();
-                }
-
-                do {
 
                     System.out.println();
                     System.out.println("INGRESE LA OPCION QUE DESEE RESPECTO AL ARRAY");
-                    System.out.println("1. Imprimir Array");
-                    System.out.println("2. Ordenar menor a mayor");
-                    System.out.println("3. Ordenar mayor a menor");
-                    System.out.println("4. Buscar elemento en el array");
-                    System.out.println("5. Copiar array");
-                    System.out.println("6. Sumar elementos");
-                    System.out.println("7. Valor promedio");
-                    System.out.println("8. Elemento mayor");
-                    System.out.println("9. Elemento menor");
-                    System.out.println("10. Verificar igualdad entre arrays");
-                    System.out.println("11. Salir");
+                    System.out.println("1. Rellenar Array");
+                    System.out.println("2. Imprimir Array");
+                    System.out.println("3. Ordenar menor a mayor");
+                    System.out.println("4. Ordenar mayor a menor");
+                    System.out.println("5. Buscar elemento en el array");
+                    System.out.println("6. Copiar array");
+                    System.out.println("7. Sumar elementos");
+                    System.out.println("8. Valor promedio");
+                    System.out.println("9. Elemento mayor");
+                    System.out.println("10. Elemento menor");
+                    System.out.println("11. Verificar igualdad entre arrays");
+                    System.out.println("12. Salir");
                     System.out.print("Su opcion es:");
                     int opcion = sc.nextInt();
                     sc.nextLine();
@@ -63,6 +44,33 @@ public class EjemploArregloInt {
 
                         case 1:
 
+                          do{  
+                            
+                            System.out.print("Ingrese el tamaño del array:");
+                            tamañoArray = sc.nextInt();
+
+                            if (tamañoArray == 0) {
+
+                                System.out.println("Ingrese un valor mayor a cero");
+
+                            } else {
+                                estadoRellenarArray = true;
+                            }
+                          }while(!estadoRellenarArray);  
+
+                            //2. instanciamos el arreglo int
+                            edades = new int[tamañoArray];
+
+                            //Rellenamos arreglo
+                            for (int i = 0; i < edades.length; i++) {
+                                System.out.print("Ingrese el valor para la posicion " + i + ":");
+                                edades[i] = sc.nextInt();
+                            }
+                           
+                            break;
+
+                        case 2:
+
                             //4. Imprimimos los valores del arreglo
                             System.out.println("IMPRESION DEL ARRAY:");
                             for (int i = 0; i < edades.length; i++) {
@@ -70,7 +78,7 @@ public class EjemploArregloInt {
                             }
                             break;
 
-                        case 2:
+                        case 3:
 
                             System.out.println("ARRAY EDADES MENOR A MAYOR");
                             menorMayor(edades);
@@ -80,7 +88,7 @@ public class EjemploArregloInt {
                             }
                             break;
 
-                        case 3:
+                        case 4:
 
                             System.out.println("ARRAY EDADES MAYOR A MENOR");
                             mayorMenor(edades);
@@ -89,7 +97,7 @@ public class EjemploArregloInt {
                             }
                             break;
 
-                        case 4:
+                        case 5:
 
                             System.out.println();
                             System.out.print("Ingrese el numero que desea buscar:");
@@ -106,7 +114,7 @@ public class EjemploArregloInt {
                             }
                             break;
 
-                        case 5:
+                        case 6:
 
                             System.out.println("COPIAR ARRAY");
                             int[] arrayCopia = copiarArray(edades);
@@ -122,20 +130,20 @@ public class EjemploArregloInt {
                             }
                             break;
 
-                        case 6:
+                        case 7:
 
                             System.out.println("SUMA ARREGLO");
                             int sumaArreglo = sumaArray(edades);
                             System.out.println("La suma del arreglo es: " + sumaArreglo);
                             break;
 
-                        case 7:
+                        case 8:
 
                             double promArray = promedioArray(edades);
                             System.out.println("El promedio del arreglo es: " + promArray);
                             break;
 
-                        case 8:
+                        case 9:
 
                             System.out.println();
                             System.out.println("ELEMENTO MAYOR");
@@ -143,7 +151,7 @@ public class EjemploArregloInt {
                             System.out.println("El elemento mayor es: " + mayor);
                             break;
 
-                        case 9:
+                        case 10:
 
                             System.out.println("ELEMENTO MENOR");
                             int menor = elementoMenor(edades);
@@ -151,7 +159,7 @@ public class EjemploArregloInt {
 
                             break;
 
-                        case 10:
+                        case 11:
 
                             System.out.println("Estableceremos un segundo array para comparar");
                             System.out.print("Ingrese el tamaño del array:");
@@ -165,20 +173,19 @@ public class EjemploArregloInt {
                             }
 
                             boolean igualdadArray = arrayIgual(edades, arrayComparativo);
-                            
+
                             if (igualdadArray == true) {
-                                
+
                                 System.out.println("Los arrays son iguales");
-                                
+
                             } else {
-                                
+
                                 System.out.println("Los arrays no son iguales");
                             }
-                            
-                            
+
                             break;
 
-                        case 11:
+                        case 12:
 
                             estado = true;
                             break;
@@ -276,6 +283,6 @@ public class EjemploArregloInt {
 
     public static boolean arrayIgual(int array1[], int array2[]) {
         boolean igualdad = Arrays.equals(array1, array2);
-        return  igualdad;
+        return igualdad;
     }
 }
