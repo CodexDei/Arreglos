@@ -6,57 +6,38 @@ import javax.swing.JOptionPane;
 
 public class EjemploArrayString {
 
-    //atributos de la clase
-    public static String nombres[];
-    public static int tamañoArray;
-    private static boolean estadoArray = false;
-    private static boolean estadoPrograma = false;
+    private static String[] nombres;
+    private static int tamañoArray;
+    private static boolean estado = false;
+    private static StringBuilder mensaje;
 
     public static void main(String[] args) {
 
-        StringBuilder mensaje;
-
         do {
+
             try {
 
-                int opcion = Integer.parseInt(JOptionPane.showInputDialog(
-                        "INGRESE LA OPCION QUE DESEE RESPECTO AL ARRAY:\n\n"
-                        + "1. Rellenar Array\n"
-                        + "2. Imprimir Array\n"
-                        + "3. Ordenar menor a mayor\n"
-                        + "4. Ordenar mayor a menor\n"
-                        + "5. Buscar elemento en el array\n"
-                        + "6. Copiar array\n"
-                        + "7. cuento con los elementos\n"
-                        + "8. Valor promedio\n"
-                        + "9. Elemento mayor\n"
-                        + "10. Elemento menor\n"
-                        + "11. Verificar igualdad entre arrays\n"
-                        + "12. Salir\n"));
+                int opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "INGRESE LA OPCION QUE DESEEE:\n\n"
+                        + "1. RELLENAR ARRAY\n"
+                        + "2. MOSTRAR ARRAY\n"
+                        + "3. ORDENAR ALFABETICAMENTE A to Z\n"
+                        + "4. ORDENAR ALFABETICAMENTE Z to A\n"
+                        + "5. COPIAR ARRAY\n"
+                        + "6. BUSCAR ELEMENTO\n"
+                        + "7. CUENTO ARRAY\n"
+                        + "8. COMPARAR ARRAYS\n"
+                        + "9. SALIR\n"));
 
                 switch (opcion) {
 
                     case 1:
 
-                        do {
-                            //tamaño array
-                            tamañoArray = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el tamaño del array:"));
+                        tamañoArray = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el tamaño del array"));
 
-                            if (tamañoArray < 0) {
-                                JOptionPane.showMessageDialog(null, "Ingrese un valor mayor a cero");
-                            } else {
-                                estadoArray = true;
-                            }
-                        } while (!estadoArray);
-
-                        //instanciar array
+                        //instanciamos array
                         nombres = new String[tamañoArray];
 
-                        //Rellenar array
-                        for (int i = 0; i < nombres.length; i++) {
-
-                            nombres[i] = JOptionPane.showInputDialog("Ingrese valor para la posicion " + i + ":");
-                        }
+                        rellenarArray(nombres);
 
                         break;
 
@@ -64,104 +45,112 @@ public class EjemploArrayString {
 
                         mensaje = new StringBuilder("IMPRESION DEL ARRAY\n\n");
 
-                        for (int i = 0; i < nombres.length; i++) {
-                            mensaje.append("Valor posicion " + i + ": " + nombres[i] + "\n");
-                        }
-                        JOptionPane.showMessageDialog(null, mensaje);
+                        concatenarMensaje(nombres);
+                        imprimirMensaje();
+
                         break;
 
                     case 3:
 
-                        mensaje = new StringBuilder("ORDENADO ALFABETICAMENTE:\n\n");
+                        mensaje = new StringBuilder("ORDEN ALFABETICO DE LA A to Z\n\n");
 
-                        menorMayor(nombres);
-
-                        for (String nombre : nombres) {
-                            mensaje.append(nombre).append("\n");
-                        }
-                        JOptionPane.showMessageDialog(null, mensaje);
+                        ordenAtoZ(nombres);
+                        concatenarMensaje(nombres);
+                        imprimirMensaje();
 
                         break;
 
                     case 4:
 
-                        mensaje = new StringBuilder("Ordenado Mayor a menor:\n");
+                        mensaje = new StringBuilder("ORDEN ALFABETICO DE LA Z to A\n\n");
 
-                        mayorMenor(nombres);
-
-                        for (String nombre : nombres) {
-                            mensaje.append(nombre).append("\n");
-                        }
-
-                        JOptionPane.showMessageDialog(null, mensaje);
+                        ordenZtoA(nombres);
+                        concatenarMensaje(nombres);
+                        imprimirMensaje();
 
                         break;
 
                     case 5:
 
-                        mensaje = new StringBuilder("BUSQUEDA EN EL ARRAY: ");
+                        mensaje = new StringBuilder("COPIANDO ARRAY\n\n");
 
-                        String valorBusqueda = JOptionPane.showInputDialog("Ingrese el valor a buscar: ");
-                        int resultadoBusqueda = buscarElemento(nombres, valorBusqueda);
+                        String[] arrayCopia = copiarArray(nombres);
 
-                        if (resultadoBusqueda >= 0) {
+                        mensaje.append("\nArray Original:\n");
+                        concatenarMensaje(nombres);
 
-                            JOptionPane.showMessageDialog(null, "El elemento " + valorBusqueda
-                                    + " se encuentra en la posicion: " + resultadoBusqueda);
+                        mensaje.append("\nArray copia:\n");
+                        concatenarMensaje(arrayCopia);
 
-                        } else {
-                            JOptionPane.showMessageDialog(null, "El elemento " + valorBusqueda
-                                    + " NO se encuentra en el Array");
-                        }
+                        imprimirMensaje();
 
                         break;
 
                     case 6:
-                        
-                        String[] arrayCopiar = new String[tamañoArray];
-                        copiarArray(nombres, arrayCopiar);
-                        
-                        mensaje = new StringBuilder("COPIA DE ARRAY\n");
-                        
-                        mensaje.append("ARRAY ORIGINAL\n");
-                        
-                        for (int i = 0; i < nombres.length; i++) {
-                            
-                            mensaje.append("El elemento de la posicion " + i + " es:" + nombres[i] + "\n");
+
+                        mensaje = new StringBuilder("BUSCANDO EN EL ARRAY");
+
+                        String dato = JOptionPane.showInputDialog("Ingrese el dato a buscar");
+                        int resultadoBusqueda = buscarArray(nombres, dato);
+
+                        if (resultadoBusqueda >= 0) {
+                            JOptionPane.showMessageDialog(null, "El valor " + "'" + dato + "'"
+                                    + " se encuentra en la posicion:" + resultadoBusqueda);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "El valor " + "'" + dato + "'"
+                                    + " NO se encuentra en el array");
                         }
-                        
-                        mensaje.append("ARRAY COPIA\n");
-                        
-                        for (int i = 0; i < arrayCopiar.length; i++) {
-                            mensaje.append("El elemento de la posicion " + i + " es:" + nombres[i] + "\n");
-                        }
-                        
-                        JOptionPane.showMessageDialog(null, mensaje);
-                        
+
                         break;
-                    
+
                     case 7:
-                        
+
                         mensaje = new StringBuilder("CUENTO CON LOS ELEMENTOS\n");
-                        
-                        mensaje.append("Habia una vez un@ niñ@ llamada " + nombres[0] + "\n tenia los pies grandes como "
-                        + nombres[1] + " y los labios como " + nombres[2] + ", era juicios@ como " + nombres[1] + "\n, jugaba xbox como "
-                        + nombres[2] + ", le gustaba arreglar uñas como a " + nombres[1] + ", buena para el parques como " + nombres[2]
-                        + ", poco al estudio como " + nombres[1] + "\n...pero se han como sean " + nombres[0] + ", " + nombres[1] + " y "
-                        + nombres[2] + " son una familia feliz");
-                        
-                        JOptionPane.showMessageDialog(null, mensaje);
-                        
+
+                        mensaje.append("Habia una vez un@ niñ@ llamad@ " + nombres[0] + "\n tenia los pies grandes como "
+                                + nombres[1] + " y los labios como " + nombres[2] + ", era juicios@ como " + nombres[1] + "\n, jugaba xbox como "
+                                + nombres[2] + " su pasion era lavar la losa como " + nombres[1] + ", le gustaba arreglar uñas como a " + nombres[2]
+                                + ", buena para el parques como " + nombres[1] + ", poco al estudio como " + nombres[2]
+                                + "\n...pero se han como sean " + nombres[0] + ", " + nombres[1] + " y "
+                                + nombres[2] + " son una familia feliz");
+
+                        imprimirMensaje();
+
                         break;
-                        
+
                     case 8:
 
-                        estadoPrograma = true;
+                        String[] nuevoArray;
+
+                        tamañoArray = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el tamaño del nuevo array:"));
+
+                        nuevoArray = new String[tamañoArray];
+                        
+                        rellenarArray(nuevoArray);
+
+                        boolean comparacion = compararArrays(nombres, nuevoArray);
+
+                        if (comparacion) {
+
+                            JOptionPane.showMessageDialog(null, "EL ARRAY ES IGUAL");
+
+                        } else {
+
+                            JOptionPane.showMessageDialog(null, "NO ES IGUAL EL ARRAY");
+                        }
+
+                        break;
+
+                    case 9:
+
+                        estado = true;
+
                         break;
 
                     default:
 
-                        JOptionPane.showMessageDialog(null, "INGRESE SOLO LOS NUMEROS DE LA TABLA");
+                        JOptionPane.showMessageDialog(null, "INGRESE UN VALOR QUE ESTE EN EL MENU, PINCHE");
+
                         break;
                 }
 
@@ -170,33 +159,68 @@ public class EjemploArrayString {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "ERROR EN LA EJECUCION: " + e.getMessage());
             }
-        } while (!estadoPrograma);
+
+        } while (!estado);
     }
+    
+    private static void rellenarArray(String[] array) {
 
-    private static void menorMayor(String array[]) {
-        Arrays.sort(array);
-    }
+        for (int i = 0; i < array.length; i++) {
 
-    private static String[] mayorMenor(String[] nombres) {
-
-        Arrays.sort(nombres);
-
-        for (int i = 0, j = nombres.length - 1; i < j; i++, j--) {
-
-            String mayorMenor = nombres[i];
-            nombres[i] = nombres[j];
-            nombres[j] = mayorMenor;
+            array[i] = JOptionPane.showInputDialog("Ingrese el valor para la posicion " + i + ":");
         }
-        return nombres;
     }
 
-    private static int buscarElemento(String array[], String nombre) {
+    private static void concatenarMensaje(String[] array) {
+
+        for (int i = 0; i < array.length; i++) {
+
+            mensaje.append("EL valor de la posicion " + i + " es: " + nombres[i] + "\n");
+        }
+    }
+
+    private static void imprimirMensaje() {
+        JOptionPane.showMessageDialog(null, mensaje);
+
+    }
+
+    private static String[] ordenAtoZ(String[] array) {
+
         Arrays.sort(array);
-        return Arrays.binarySearch(array, nombre);
+        return array;
     }
 
-    private static String[] copiarArray(String[] array, String[] CopiaArray) {
-        return Arrays.copyOf(nombres, tamañoArray);
+    private static String[] ordenZtoA(String[] array) {
+
+        Arrays.sort(array);
+
+        for (int i = 0, j = array.length - 1; i < j; i++, j--) {
+
+            String temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
     }
+
+    private static String[] copiarArray(String[] array) {
+
+        return Arrays.copyOf(array, tamañoArray);
+    }
+
+    private static int buscarArray(String[] array, String dato) {
+
+        Arrays.sort(array);
+        int resultadoDato = Arrays.binarySearch(array, dato);
+        return resultadoDato;
+    }
+
+    private static boolean compararArrays(String[] Array1, String[] Array2) {
+
+        boolean comparacion = Arrays.equals(Array1, Array2);
+        return comparacion;
+    }
+
+    
 
 }
