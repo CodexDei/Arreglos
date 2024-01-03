@@ -141,11 +141,11 @@ public class EjemploArrayString {
 
                         if (comparacion) {
 
-                            JOptionPane.showMessageDialog(null, "EL ARRAY ES IGUAL");
+                            JOptionPane.showMessageDialog(null, "LOS ARRAYS SON IGUALES");
 
                         } else {
 
-                            JOptionPane.showMessageDialog(null, "NO ES IGUAL EL ARRAY");
+                            JOptionPane.showMessageDialog(null, "NO SON IGUALES LOS ARRAYS");
                         }
 
                         break;
@@ -226,8 +226,7 @@ public class EjemploArrayString {
 
     private static boolean compararArrays(String[] Array1, String[] Array2) {
 
-        boolean comparacion = Arrays.equals(Array1, Array2);
-        return comparacion;
+        return Arrays.equals(Array1, Array2);
     }
 
     
