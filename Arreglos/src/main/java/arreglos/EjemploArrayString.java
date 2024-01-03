@@ -90,15 +90,24 @@ public class EjemploArrayString {
 
                         mensaje = new StringBuilder("BUSCANDO EN EL ARRAY");
 
-                        String dato = JOptionPane.showInputDialog("Ingrese el dato a buscar");
-                        int resultadoBusqueda = buscarArray(nombres, dato);
+                        String elementoBuscado = JOptionPane.showInputDialog("Ingrese el dato a buscar");
+                        int resultadoBusqueda = buscarArray(nombres, elementoBuscado);
 
-                        if (resultadoBusqueda >= 0) {
-                            JOptionPane.showMessageDialog(null, "El valor " + "'" + dato + "'"
-                                    + " se encuentra en la posicion:" + resultadoBusqueda);
+                         if (resultadoBusqueda >=  0) {
+                            
+                            mensaje = new StringBuilder("Buscador de elementos\n\n");
+                            
+                            mensaje.append("El elemento " + elementoBuscado + " esta en la posicion " 
+                                + elementoBuscado + "\n");
+                            
+                            mensaje.append("Posicion " + elementoBuscado + ": " + elementoBuscado); 
+                            
+                            JOptionPane.showMessageDialog(null, mensaje);
+                            
                         } else {
-                            JOptionPane.showMessageDialog(null, "El valor " + "'" + dato + "'"
-                                    + " NO se encuentra en el array");
+                            
+                            JOptionPane.showMessageDialog(null, "El elemento " + elementoBuscado 
+                                    + " NO esta en el Array"); 
                         }
 
                         break;
