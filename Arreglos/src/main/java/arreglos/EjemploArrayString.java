@@ -1,7 +1,9 @@
 package arreglos;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.InputMismatchException;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class EjemploArrayString {
@@ -201,14 +203,24 @@ public class EjemploArrayString {
 
     private static String[] ordenZtoA(String[] array) {
 
+
         Arrays.sort(array);
 
-        for (int i = 0, j = array.length - 1; i < j; i++, j--) {
+        List<String> list = Arrays.asList(array);
 
-            String temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
-        }
+        //Collections.reverseOrder es un comparador, es decir como una regla que indica
+        //como se deben organizar los elementos, en este caso de forma descendente
+        Collections.sort(list, Collections.reverseOrder());
+
+//        OTRA FORMA DE ORDENAR DESCENDENTEMENTE
+//        Arrays.sort(array);
+//
+//        for (int i = 0, j = array.length - 1; i < j; i++, j--) {
+//
+//            String temp = array[i];
+//            array[i] = array[j];
+//            array[j] = temp;
+//        }
         return array;
     }
 
