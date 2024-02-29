@@ -1,9 +1,6 @@
 package arreglos;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.InputMismatchException;
-import java.util.List;
+import java.util.*;
 import javax.swing.JOptionPane;
 
 public class EjemploArrayString {
@@ -47,8 +44,7 @@ public class EjemploArrayString {
 
                         mensaje = new StringBuilder("IMPRESION DEL ARRAY\n\n");
 
-                        concatenarMensaje(nombres);
-                        imprimirMensaje();
+                        imprimirArray(nombres);
 
                         break;
 
@@ -95,21 +91,21 @@ public class EjemploArrayString {
                         String elementoBuscado = JOptionPane.showInputDialog("Ingrese el dato a buscar");
                         int resultadoBusqueda = buscarArray(nombres, elementoBuscado);
 
-                         if (resultadoBusqueda >=  0) {
-                            
+                        if (resultadoBusqueda >=  0) {
+
                             mensaje = new StringBuilder("Buscador de elementos\n\n");
-                            
-                            mensaje.append("El elemento " + elementoBuscado + " esta en la posicion " 
-                                + elementoBuscado + "\n");
-                            
-                            mensaje.append("Posicion " + elementoBuscado + ": " + elementoBuscado); 
-                            
+
+                            mensaje.append("El elemento " + elementoBuscado + " esta en la posicion "
+                                    + resultadoBusqueda + "\n");
+
+                            mensaje.append("Posicion " + resultadoBusqueda + ": " + elementoBuscado);
+
                             JOptionPane.showMessageDialog(null, mensaje);
-                            
+
                         } else {
-                            
-                            JOptionPane.showMessageDialog(null, "El elemento " + elementoBuscado 
-                                    + " NO esta en el Array"); 
+
+                            JOptionPane.showMessageDialog(null, "El elemento " + elementoBuscado
+                                    + " NO esta en el Array");
                         }
 
                         break;
@@ -136,7 +132,7 @@ public class EjemploArrayString {
                         tamañoArray = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el tamaño del nuevo array:"));
 
                         nuevoArray = new String[tamañoArray];
-                        
+
                         rellenarArray(nuevoArray);
 
                         boolean comparacion = compararArrays(nombres, nuevoArray);
@@ -173,26 +169,53 @@ public class EjemploArrayString {
 
         } while (!estado);
     }
-    
-    private static void rellenarArray(String[] array) {
 
-        for (int i = 0; i < array.length; i++) {
+    public static void rellenarArray(String array[]){
 
-            array[i] = JOptionPane.showInputDialog("Ingrese el valor para la posicion " + i + ":");
+        for (int i = 0; i < nombres.length; i++){
+
+            array[i] = JOptionPane.showInputDialog("Ingrese el elemento en la posicion "+ i + ":");
+
+        }
+
+    }
+
+    public static void concatenarMensaje(String[] array){
+
+        if (array != null){
+
+            for (int i = 0; i < array.length; i++){
+
+                mensaje.append("El valor de la posicion " + i + " es: " + array[i]).append("\n");
+            }
+        }else {
+
+            JOptionPane.showMessageDialog(null,
+                    "El array esta vacio","ARRAY VACIO", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }
+
+    public static void imprimirArray(String[] array){
+
+        if (array != null){
+
+            for (int i = 0; i < array.length; i++){
+
+                mensaje.append("El valor de la posicion " + i + " es: " + array[i]).append("\n");
+            }
+            JOptionPane.showMessageDialog(null
+                    ,mensaje,"IMPRESION ARRAY",JOptionPane.INFORMATION_MESSAGE);
+
+        }else {
+            JOptionPane.showMessageDialog(null,"El array esta vacio","ARRAY VACIO",JOptionPane.WARNING_MESSAGE);
         }
     }
 
-    private static void concatenarMensaje(String[] array) {
+    public static void imprimirMensaje(){
 
-        for (int i = 0; i < array.length; i++) {
-
-            mensaje.append("EL valor de la posicion " + i + " es: " + nombres[i] + "\n");
-        }
-    }
-
-    private static void imprimirMensaje() {
-        JOptionPane.showMessageDialog(null, mensaje);
-
+        JOptionPane.showMessageDialog(null,
+                mensaje,"IMPRESION ARRAY", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private static String[] ordenAtoZ(String[] array) {
@@ -224,6 +247,7 @@ public class EjemploArrayString {
         return array;
     }
 
+
     private static String[] copiarArray(String[] array) {
 
         return Arrays.copyOf(array, tamañoArray);
@@ -241,6 +265,6 @@ public class EjemploArrayString {
         return Arrays.equals(Array1, Array2);
     }
 
-    
+
 
 }
