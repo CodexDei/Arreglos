@@ -226,9 +226,10 @@ public class EjemploArrayString {
 
     private static String[] ordenZtoA(String[] array) {
 
-
+        //se ordena el Array
         Arrays.sort(array);
 
+        //se almacena el array en una lista
         List<String> list = Arrays.asList(array);
 
         //Collections.reverseOrder es un comparador, es decir como una regla que indica

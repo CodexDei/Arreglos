@@ -91,10 +91,23 @@ public class EjemploArregloInt {
                         case 4:
 
                             System.out.println("ARRAY EDADES MAYOR A MENOR");
-                            mayorMenor(edades);
-                            for (int i = 0; i < edades.length; i++) {
-                                System.out.println("Posicion " + i + ": " + edades[i]);
+                            System.out.println("Desea:");
+                            System.out.println("1. Solo ordenar de mayor a menor");
+                            System.out.println("2. Ordenar de mayor a menor e imprimir array");
+                            System.out.print("Su opcion es:");
+                            int opcion2 = sc.nextInt();
+
+                            switch (opcion2) {
+
+                                case 1:
+                                    OrdenarMayorMenor(edades);
+                                    break;
+
+                                case 2:
+                                  OrdenarMayorMenorImprimir(edades);
+                                    break;
                             }
+
                             break;
 
                         case 5:
@@ -214,24 +227,26 @@ public class EjemploArregloInt {
     }
 
     //metodo ordena array forma descendente
-    public static void mayorMenor(int array[]) {
+    public static void OrdenarMayorMenor(int array[]) {
 
-        Arrays.sort(array);
-        //ordena array metodo mas eficiente pero complejo
-//        for (int i = 0; i < array.length / 2; i++) {
-//            // Se intercambian los elementos de las posiciones i y (longitud - 1 - i)
-//            int temp = array[i];
-//            array[i] = array[array.length - 1 - i];
-//            array[array.length - 1 - i] = temp;
-//        }
-
-        //ordena descendente simplificado, luego de un Arrays.sort
         for (int i = 0, j = array.length - 1; i < j; i++, j--) {
             int temp = array[i];
             array[i] = array[j];
             array[j] = temp;
         }
+        System.out.println("El array ha sido ordenado de mayor a menor!");
     }
+
+    public static void OrdenarMayorMenorImprimir(int[] array){
+
+        int tamañoArray = array.length;
+        Arrays.sort(array);
+        //ordena array e imprime
+        for(int i = 0; i < tamañoArray; i++) {
+            System.out.println("Edad " + i + ": " + array[tamañoArray-1-i]);
+        }
+    }
+
 
     //metodo para buscar un elemento de un array
     public static int buscarElemento(int array[], int elemento) {
