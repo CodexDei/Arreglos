@@ -23,11 +23,11 @@ public class NumeroMayorArreglo {
 
         for (int i = 1; i < numeros.length; i++) {
 
-            //Usa la clase Max para hallar el numero mayor en el arreglo
-//            max = Math.max(numeros[max], numeros[i]);
-
             //Se busca el nuemro mayor con un operador ternario
             max = (numeros[max] > numeros[i]) ? numeros[max] : numeros[i];
+
+            //Otra forma usando la clase Max para hallar el numero mayor en el arreglo
+//            max = Math.max(numeros[max], numeros[i]);
         }
 
         JOptionPane.showMessageDialog(null, "EL numero mayor es: " + max);
