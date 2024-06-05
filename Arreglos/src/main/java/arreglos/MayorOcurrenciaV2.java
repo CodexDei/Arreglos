@@ -1,10 +1,9 @@
 package arreglos;
 
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Pruebas {
+public class MayorOcurrenciaV2 {
 
     public static boolean estadoPrograma = false;
 
