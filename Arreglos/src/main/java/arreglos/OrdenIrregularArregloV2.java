@@ -1,3 +1,5 @@
+package arreglos;
+
 import java.util.Scanner;
 
 public class OrdenIrregularArregloV2 {
