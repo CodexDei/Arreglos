@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Pruebas {
+public class HistogramaXNumeros {
 
     // Variable para controlar el estado del programa
     public static boolean estadoPrograma = false;
@@ -62,44 +62,42 @@ public class Pruebas {
             numeros[i] = Integer.parseInt(scanner.nextLine());
         }
 
-        Map<Integer, Integer> frecuencia = new HashMap<>();
+        // Crear un HashMap para contar las ocurrencias de cada número
+        Map<Integer, Integer> frecuencias = new HashMap<>();
 
-        for (int num : numeros){
-
-            frecuencia.put(num, frecuencia.getOrDefault(num, 0) + 1);
+        // Contar la frecuencia de cada número ingresado
+        for (int numero : numeros) {
+            frecuencias.put(numero, frecuencias.getOrDefault(numero, 0) + 1);
         }
 
+        // Determinar el rango de números ingresados para incluir los que no están presentes
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
 
-        for (int num : numeros){
-
-            if (num < min){
-
-                min = num;
+        for (int numero : numeros) {
+            if (numero < min) {
+                min = numero;
             }
-            if (num > max){
-
-                max = num;
+            if (numero > max) {
+                max = numero;
             }
         }
 
+        // Crear un StringBuilder para construir el histograma
         StringBuilder histograma = new StringBuilder();
-
-        for (int i = min; i <= max; i++){
-
-            histograma.append(i).append(":");
-
-            if (frecuencia.containsKey(i)){
-
-                for (int j = 0; j < frecuencia.get(i); j++){
-
+        // Construir el histograma
+        for (int i = min; i <= max; i++) {
+            histograma.append(i).append(": ");
+            if (frecuencias.containsKey(i)) {
+                for (int j = 0; j < frecuencias.get(i); j++) {
                     histograma.append("*");
                 }
             }
             histograma.append("\n");
         }
-        System.out.println("HISTOGRAMA");
+
+        // Mostrar el histograma en la consola
+        System.out.println("Histograma:");
         System.out.println(histograma.toString());
     }
 }

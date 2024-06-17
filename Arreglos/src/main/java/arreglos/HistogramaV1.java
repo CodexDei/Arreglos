@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MayorOcurrenciaXcantNumeros {
+public class HistogramaV1 {
 
     // Variable para controlar el estado del programa
     public static boolean estadoPrograma = false;
@@ -14,7 +14,7 @@ public class MayorOcurrenciaXcantNumeros {
             try {
                 // Mostrar un menú al usuario y leer su elección
                 int menu = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la accion que desee:\n" +
-                        "1. Hallar la mayor concurrencia\n" +
+                        "1. Visualizar un histograma\n" +
                         "2. SALIR"));
 
                 // Evaluar la elección del usuario
@@ -50,49 +50,48 @@ public class MayorOcurrenciaXcantNumeros {
     // Método para encontrar la mayor concurrencia de números
     private static void mayorConcurrencia() {
         // Pedir al usuario la cantidad de números que desea ingresar
-        int tamanoArrays = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de numeros que desea ingresar"));
+       // int tamanoArrays = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de numeros que desea ingresar"));
         // Crear un array para almacenar los números ingresados
-        int[] numeros = new int[tamanoArrays];
+        int[] numeros = new int[6];
 
         // Leer los números ingresados por el usuario
-        for (int i = 0; i < tamanoArrays; i++) {
-            numeros[i] = Integer.parseInt(JOptionPane.showInputDialog("Ingrese un numero entero:\n" +
+        for (int i = 0; i < numeros.length; i++) {
+
+            numeros[i] = Integer.parseInt(JOptionPane.showInputDialog("Ingrese un numero entero del 1 al 6:\n" +
                     "Numero " + (i + 1) + ":"));
-        }
 
-        // Crear un HashMap para contar las ocurrencias de cada número
-        Map<Integer, Integer> contadorNumeros = new HashMap<>();
+            if (numeros[i] < 1 || numeros[i] > 6){
 
-        // Contar las ocurrencias de cada número en el array
-        for (int numero : numeros) {
-            contadorNumeros.put(numero, contadorNumeros.getOrDefault(numero, 0) + 1);
-        }
-
-        // Encontrar el valor máximo de ocurrencias
-        int mayorOcurrencia = 0;
-        for (int ocurrencias : contadorNumeros.values()) {
-            if (ocurrencias > mayorOcurrencia) {
-                mayorOcurrencia = ocurrencias;
+                JOptionPane.showMessageDialog(null,
+            "Ingrese un numero del 1 al 6", "RECUERDE", JOptionPane.WARNING_MESSAGE);
+             --i;
             }
         }
 
-        // Construir el mensaje para mostrar al usuario
-        StringBuilder mensaje = new StringBuilder();
-        if (mayorOcurrencia > 1) {
-            mensaje.append("Los numeros con mayor concurrencia son:\n");
-            // Recorrer todas las entradas del HashMap
-            for (Map.Entry<Integer, Integer> entrada : contadorNumeros.entrySet()) {
-                // Añadir al mensaje los números que tienen la mayor concurrencia
-                if (entrada.getValue() == mayorOcurrencia) {
-                    mensaje.append("El numero ").append(entrada.getKey()).append(" se repite ").append(mayorOcurrencia).append(" veces\n");
+        //contar frecuencia
+        Map<Integer, Integer> frecuencia = new HashMap<>();
+
+        for (int num : numeros){
+
+            frecuencia.put(num, frecuencia.getOrDefault(num, 0) + 1);
+        }
+
+        //crear histograma
+        StringBuilder histograma = new StringBuilder("HISTOGRAMA\n\n");
+
+        for (int i = 1; i <= 6; i++){
+
+            histograma.append(i).append(": ");
+
+            if (frecuencia.containsKey(i)){
+
+                for (int j = 0; j < frecuencia.get(i); j++){
+
+                    histograma.append("*");
                 }
             }
-        } else {
-            // Si no hay números repetidos, añadir un mensaje informativo
-            mensaje.append("No hay números que se repitan en el arreglo.");
+            histograma.append("\n");
         }
-
-        // Mostrar el mensaje final al usuario
-        JOptionPane.showMessageDialog(null, mensaje.toString());
+        JOptionPane.showMessageDialog(null, histograma.toString());
     }
 }

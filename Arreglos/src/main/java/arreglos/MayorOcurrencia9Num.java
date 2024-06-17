@@ -3,7 +3,7 @@ package arreglos;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class MayorOcurrencia10Num {
+public class MayorOcurrencia9Num {
 
     public static boolean estadoPrograma = false;
 
