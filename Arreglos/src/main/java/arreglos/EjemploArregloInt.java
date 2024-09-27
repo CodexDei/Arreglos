@@ -206,22 +206,25 @@ public class EjemploArregloInt {
 
                             System.out.println();
                             System.out.println("ARRAY NUMEROS: ELEMENTO MAYOR");
-                            Integer mayor = mparr.elementoMayor(numeros, Integer.class);
+                            Integer mayor = mparr.elementoMayor(numeros);
                             System.out.println("El elemento mayor es: " + mayor);
 
                             System.out.println();
                             System.out.println("ARRAY PALABRAS: ELEMENTO MAYOR");
-                            String mayor2 = mparr.elementoMayor(palabras, String.class);
+                            String mayor2 = mparr.elementoMayor(palabras);
                             System.out.println("El elemento mayor es: " + mayor2);
                         }
-//
-//                        case 10:
-//
-//                            System.out.println("ELEMENTO MENOR");
-//                            int menor = elementoMenor(edades);
-//                            System.out.println("El elemento menor es: " + menor);
-//
-//                            break;
+
+                        case 10 -> {
+
+                            System.out.println("ARRAY NUMEROS: ELEMENTO MENOR");
+                            int menor = mparr.elementoMenor(numeros);
+                            System.out.println("El elemento menor es: " + menor);
+                            System.out.println("ARRAY PALABRAS: ELEMENTO MENOR");
+                            String menor2 = mparr.elementoMenor(palabras);
+                            System.out.println("El elemento menor es: " + menor2);
+
+                        }
 //
 //                        case 11:
 //

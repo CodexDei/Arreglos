@@ -91,57 +91,23 @@ public class MetodosPrincipalesArreglos {
         return promedio;
     }
 
-    public <T> T elementoMayor(T[] arreglo, Class<T> tipo){
+    public <T extends Comparable<T>> T elementoMayor(T[] arreglo){
 
+        // Convertir el arreglo a una lista
+        List<T> lista = Arrays.asList(arreglo);
 
-        if (tipo == Integer.class){
+        // Ordenar la lista en orden descendente
+        Collections.sort(lista, Collections.reverseOrder());
 
-            List lista = Arrays.asList(arreglo);
-
-            Collections.sort(lista, Collections.reverseOrder());
-
-            lista.toArray((IntFunction) lista);
-
-            return arreglo[0];
-
-        } else if (tipo == String.class) {
-
-            List lista = Arrays.asList(arreglo);
-
-            Collections.sort(lista, Collections.reverseOrder());
-
-            lista.toArray(arreglo);
-
-            return arreglo[0];
-        }else {
-        // Lanza una excepción si el tipo no es soportado
-        throw new IllegalArgumentException("Tipo no soportado: " + tipo.getName());
-        }
+        // Devolver el primer elemento (el mayor)
+        return lista.get(0);
 
     }
 
-    public <T> T elementoMenor(T[] arreglo, Class<T> tipo){
+    public <T extends Comparable<T>> T elementoMenor(T[] arreglo){
 
-        if (tipo == Integer.class){
+       Arrays.sort(arreglo);
 
-            Arrays.sort(arreglo);
-
-        } else if (tipo == String.class) {
-
-            List lista = Arrays.asList(arreglo);
-
-            Collections.sort(lista, Collections.reverseOrder());
-
-            lista.toArray(arreglo);
-
-            return arreglo[0];
-
-        }else {
-            // Lanza una excepción si el tipo no es soportado
-            throw new IllegalArgumentException("Tipo no soportado: " + tipo.getName());
-        }
-
+       return arreglo[0];
     }
-
-
 }
