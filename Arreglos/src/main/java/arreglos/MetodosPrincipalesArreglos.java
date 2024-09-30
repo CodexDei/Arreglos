@@ -110,4 +110,9 @@ public class MetodosPrincipalesArreglos {
 
        return arreglo[0];
     }
+
+    public <T> boolean comparandoArrays(T[] arreglo1, T[] arreglo2){
+
+        return Arrays.equals(arreglo1,arreglo2);
+    }
 }

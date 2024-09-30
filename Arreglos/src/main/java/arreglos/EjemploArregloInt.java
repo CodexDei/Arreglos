@@ -225,33 +225,22 @@ public class EjemploArregloInt {
                             System.out.println("El elemento menor es: " + menor2);
 
                         }
-//
-//                        case 11:
-//
-//                            System.out.println("Estableceremos un segundo array para comparar");
-//                            System.out.print("Ingrese el tamaño del array:");
-//                            int array2 = sc.nextInt();
-//                            int[] arrayComparativo = new int[array2];
-//
-//                            for (int i = 0; i < arrayComparativo.length; i++) {
-//
-//                                System.out.println("Ingrese el valor de la posicion " + i + ":");
-//                                arrayComparativo[i] = sc.nextInt();
-//                            }
-//
-//                            boolean igualdadArray = arrayIgual(edades, arrayComparativo);
-//
-//                            if (igualdadArray == true) {
-//
-//                                System.out.println("Los arrays son iguales");
-//
-//                            } else {
-//
-//                                System.out.println("Los arrays no son iguales");
-//                            }
-//
-//                            break;
-//
+
+                        case 11 -> {
+
+                            boolean comparacion = mparr.comparandoArrays(palabras,numeros);
+
+                            if (comparacion){
+
+                                System.out.println("Los arreglos son iguales");
+
+                            }else {
+
+                                System.out.println("Los arreglos son diferentes");
+                            }
+
+                        }
+
                         case 12 -> {
 
                             estado = true;
@@ -274,33 +263,4 @@ public class EjemploArregloInt {
 
         } while (!estado);
     }
-
-
-//    //Elemento mayor
-//    public static int elementoMayor(int array[]) {
-////        int mayor = Arrays.stream(array).max().orElse(Integer.MAX_VALUE);
-////        return mayor;
-//        Arrays.sort(array);
-//
-//        int j = array.length - 1;
-//        int mayor = array[j];
-//        return mayor;
-//    }
-//
-//    public static int elementoMenor(int array[]) {
-////        Elemento mayor con metodos Java
-////        int mayor = Arrays.stream(array).max().orElse(Integer.MAX_VALUE);
-////        return mayor;
-//
-//        Arrays.sort(array);
-//
-//        int i = 0;
-//        int menor = array[i];
-//        return menor;
-//    }
-//
-//    public static boolean arrayIgual(int array1[], int array2[]) {
-//        boolean igualdad = Arrays.equals(array1, array2);
-//        return igualdad;
-//    }
 }
